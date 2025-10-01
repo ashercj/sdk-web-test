@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的SDK测试</title>
+    <meta charset="UTF-8">
+    
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #root {
+            width: 100vw;   /* 100% 屏幕宽度 */
+            height: 100vh;  /* 100% 屏幕高度 */
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="root"></div> 
+    <script src="https://g.alicdn.com/apsara-media-aui/amaui-web-aicall/1.6.2/aicall-ui.js"></script>
+<script>
+new ARTCAICallUI({
+    // 这是您网页的用户 ID。我这里暂时用 'test_user_001'，您可以用您想用的任何 ID。
+    userId: 'asherc',          
+
+    // 这是告诉 SDK 把界面渲染到 id 为 'root' 的 div 里面
+    root: document.getElementById('root'), 
+
+    // 这是您图片中获取到的“分享ID” (Token)。请确保复制完整。
+    shareToken: 'eyJSZXF1ZXN0SWQiOiJBMzYwNDU4Ri1FN0Q3LTVGMEQtQjREOC0wMzZBM0ZFQ0QyMDYiLCJXb3JrZmxvd1R5cGUiOiJWb2ljZUNoYXQiLCJUZW1wb3JhcnlBSUFnZW50SWQiOiIwYjJiMjdhYmY5Yjc0NzEwODNjZWM2NTMwYThlYzQyMiIsIkV4cGlyZVRpbWUiOiIyMDI1LTEwLTAyIDE1OjM1OjMyIiwiTmFtZSI6IkxUbXhUMmxzIiwiUmVnaW9uIjoiY24tc2hhbmdoYWkifQ=='     
+}).render();
+</script>
+    </body>
+</html>
+
+
