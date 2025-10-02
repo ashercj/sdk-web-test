@@ -1,34 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的SDK测试</title>
+    <title>AI英语助手</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <style>
-        body { margin: 0; overflow: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .feature-list {
+            flex: 1;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
         #root {
-            width: 100vw;   /* 100% 屏幕宽度 */
-            height: 100vh;  /* 100% 屏幕高度 */
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .feature-list {
+                display: flex;
+                overflow-x: auto;
+                gap: 15px;
+            }
+            
+            .feature-item {
+                min-width: 250px;
+                margin-bottom: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <div class="header">
+            <div class="title">AI英语助手</div>
+            <div class="subtitle">每天进步一点点</div>
+        </div>
+        
+        <div class="feature-list">
+            <div class="feature-item">
+                <div class="feature-title">1. 英译汉</div>
+                <div class="feature-desc">你说一个英文单词，我来说中文</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">2. 汉译英</div>
+                <div class="feature-desc">你说一个中文单词，我说英文，记得纠正我的发音</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">3. 语法通</div>
+                <div class="feature-desc">随机问我一个语法问题，我回答，你给建议</div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-title">4. 练口语</div>
+                <div class="feature-desc">随机给一个话题，我来说英文，你给建议</div>
+            </div>
+        </div>
+    </div>
     
-    <div id="root"></div> 
+    <div class="main-content">
+        <div id="root"></div>
+    </div>
+    
     <script src="https://g.alicdn.com/apsara-media-aui/amaui-web-aicall/1.6.2/aicall-ui.js"></script>
-<script>
-new ARTCAICallUI({
-    // 这是您网页的用户 ID。我这里暂时用 'test_user_001'，您可以用您想用的任何 ID。
-    userId: 'asherc',          
+    <script>
+        new ARTCAICallUI({
+            // 这是您网页的用户 ID。我这里暂时用 'test_user_001'，您可以用您想用的任何 ID。
+            userId: 'asherc',          
 
-    // 这是告诉 SDK 把界面渲染到 id 为 'root' 的 div 里面
-    root: document.getElementById('root'), 
+            // 这是告诉 SDK 把界面渲染到 id 为 'root' 的 div 里面
+            root: document.getElementById('root'), 
 
-    // 这是您图片中获取到的“分享ID” (Token)。请确保复制完整。
-    shareToken: 'eyJSZXF1ZXN0SWQiOiJBMzYwNDU4Ri1FN0Q3LTVGMEQtQjREOC0wMzZBM0ZFQ0QyMDYiLCJXb3JrZmxvd1R5cGUiOiJWb2ljZUNoYXQiLCJUZW1wb3JhcnlBSUFnZW50SWQiOiIwYjJiMjdhYmY5Yjc0NzEwODNjZWM2NTMwYThlYzQyMiIsIkV4cGlyZVRpbWUiOiIyMDI1LTEwLTAyIDE1OjM1OjMyIiwiTmFtZSI6IkxUbXhUMmxzIiwiUmVnaW9uIjoiY24tc2hhbmdoYWkifQ=='     
-}).render();
-</script>
-    </body>
+            // 这是您图片中获取到的"分享ID" (Token)。请确保复制完整。
+            shareToken: 'eyJSZXF1ZXN0SWQiOiJBMzYwNDU4Ri1FN0Q3LTVGMEQtQjREOC0wMzZBM0ZFQ0QyMDYiLCJXb3JrZmxvd1R5cGUiOiJWb2ljZUNoYXQiLCJUZW1wb3JhcnlBSUFnZW50SWQiOiIwYjJiMjdhYmY5Yjc0NzEwODNjZWM2NTMwYThlYzQyMiIsIkV4cGlyZVRpbWUiOiIyMDI1LTEwLTAyIDE1OjM1OjMyIiwiTmFtZSI6IkxUbXhUMmxzIiwiUmVnaW9uIjoiY24tc2hhbmdoYWkifQ=='     
+        }).render();
+    </script>
+</body>
 </html>
 
 
